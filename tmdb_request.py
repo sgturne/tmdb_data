@@ -1,4 +1,4 @@
-import url.librequest
+import urllib.request
 import os 
 
  #api_key = "thing_copied_from_site"
