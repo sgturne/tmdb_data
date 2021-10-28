@@ -1,5 +1,6 @@
 import urllib.request
 import os 
+import json
 
  #api_key = "thing_copied_from_site"
 
@@ -12,9 +13,15 @@ f.close()
 if not os.path.exists("json_files"):
 	os.mkdir("json_files")
 
+for movie_id in range(movie_start, movie_end):
 
-movie_id = 550
 
-response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/"+ str(movie_id) + "?api_key="+ api_key)
+	response = urllib.request.urlopen("https://api.themoviedb.org/3/movie/"+ str(movie_id) + "?api_key="+ api_key)
 
-print(response)
+
+	json_response = json.load(response)
+
+	f = open("json_files/tmdb" + str(movie_id) + ".json", "w")
+	f.write(json.dumps(json_response))
+	f.close()
+
